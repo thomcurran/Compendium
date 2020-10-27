@@ -1,0 +1,30 @@
+---
+title: "Power Analysis"
+output: html_notebook
+---
+
+## Power analysis for Bryan et al
+
+The design was a two-group design, with participants randomized into a cheater or cheating group. The authors do not list the randomization split but the original sample was 79 college students. I will assume it was 40/39.
+
+Participants in the “cheating” condition claimed to have obtained significantly more heads for money (M  5.49, SD  1.25) than did those in the “cheater” condition (M  4.88, SD = 1.38), t(77) = 2.06, p = .04, Cohen's d = 0.46. This was a difference in favor of the authors' hypotheses: asking someone not to be a cheater appears to stop them cheating. 
+
+### Original study power (post-priori power)
+
+The original effect size for the two-sample (independent) t-test that tested the primary hypothesis was Cohen’s d = .46. From these numbers, I can calculate the post-priori power.
+
+```{r}
+pwr.t2n.test(n1 = 40, n2= 39, d = .46, sig.level =.05) # for uneven samples like this use pwr.t2n.test where n1 and n2 are the sample sizes (all other commands the same)
+```
+
+The original study only had a post-priori power of .52 or 52%. 
+
+### Replication study power (a-priori power)
+
+To achieve high power I will need a large number of participants because the original effect size is only moderate. I will use that original effect size to calculate the required sample size with 80% power.
+
+```{r}
+pwr.t.test(d = .46, power = .8, sig.level = .05, type = c("two.sample"))
+```
+
+The results of this power analysis indicate that I will need a sample of n = 150 (i.e., 75 in each group) to replicate the original effect size with 80% power.

@@ -1,0 +1,51 @@
+---
+title: "Data Simulation"
+output: html_notebook
+---
+
+## Simulating data for replication of Bryan et al (2013) 
+
+The confirmatory hypothesis test undertaken by Bryan et al (2013) was an independent samples t-test which compared the differences between two conditions: cheating and cheater.
+
+The power analyses revealed that I will need a sample of n = 150 (i.e., 75 in each group) to replicate the original effect size with 80% power. Therefore, to simulate the data we need to create two groups of 75, each containing the mean number of heads reported. 
+
+### Groups means and sd
+
+When creating the samples for each group it is important to set the means and standard deviations of the sample distribution in line with those reported in the original study. In this case, the particular numbers for the cheater group are: M = 4.88 (SD = 1.38) and for the cheating group are: M = 5.49 (SD = 1.25). I will use the rnorm function to create simulated mean number of heads.
+
+```{r}
+cheater <- rnorm(75, mean = 4.88, sd = 1.38)
+cheating <- rnorm(75, mean = 5.49, sd = 1.25)
+```
+
+### Setting the limits
+
+Mean number of heads have a lower limit of 0 and an upper limit of 10. So, it is important to ensure that none of the numbers in each of the samples go beyond these limits.
+
+```{r}
+cheater[cheater > 10] <- 10
+cheater[cheater < 0] <- 0
+cheating[cheating > 10] <- 10
+cheating[cheating < 0] <- 0
+```
+
+### Creating the dataframe
+
+Because the data need to be stacked horizontally (between-subjects so each row is a new case), I am going to use use the gather function in tidyverse to create a condition factor and the heads outcome variable. This way, I can easily run the independent t-test in the appropriate data format.
+
+```{r}
+library(tidyverse)
+data <- data.frame(ID=1:75, cheater=cheater, cheating=cheating)
+data <- gather(data, key=condition, value=heads, cheater, cheating)
+data$condition = as.factor(data$condition)
+```
+
+### Save as dataframe (.csv)
+
+Finally, I will save the dataframe as a .csv to the "Data" folder of the research compendium. 
+
+```{r}
+write.csv(data, "C:/Users/CURRANT/Documents/Compendium/Data/data.csv")
+```
+
+
