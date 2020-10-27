@@ -45,7 +45,7 @@ data$condition = as.factor(data$condition)
 Finally, I will save the dataframe as a .csv to the "Data" folder of the research compendium. 
 
 ```{r}
-write.csv(data, "C:/Users/CURRANT/Documents/Compendium/Data/data.csv")
+write.csv(data, "~/Compendium/Data/data.csv")
 ```
 
 

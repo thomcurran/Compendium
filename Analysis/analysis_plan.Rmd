@@ -20,7 +20,8 @@ H0: There will be no significant difference in mean heads reported between the c
 ## Load data
 
 ```{r}
-data <- read_csv("C:/Users/CURRANT/Documents/Compendium/Data/data.csv")
+library(readr)
+data <- read_csv("~/Compendium/Data/data.csv")
 ```
 
 ## Preliminary analysis
@@ -73,14 +74,14 @@ plot1 <-
 
 ## Save plot
 
-ggsave(file="C:/Users/CURRANT/Documents/Compendium/Plots/plot_1.png")
+ggsave(file="~/Compendium/Plots/plot_1.png")
 ```
 
 And finally create am APA table with the mean and sd for each condition.
 
 ```{r}
 library(apaTables)
-apa.1way.table(iv=condition,dv=heads,data=data,filename="C:/Users/CURRANT/Documents/Compendium/Tables/table_1.doc",table.number = 1)
+apa.1way.table(iv=condition,dv=heads,data=data,filename="~/Compendium/Tables/table_1.doc",table.number = 1)
 ```
 
 
@@ -122,5 +123,5 @@ geom_errorbar(aes(ymin  = Trad.lower,
   xlab("Condition") +
   ylab("Mean Number of Heads")+
   theme_classic()+
-  ggsave(file="C:/Users/CURRANT/Documents/Compendium/Plots/plot_2.png")
+  ggsave(file="~/Compendium/Plots/plot_2.png")
 ```
