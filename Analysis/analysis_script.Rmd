@@ -1,5 +1,5 @@
 ---
-title: "Example Confirmatory Data Analysis Plan"
+title: "Example Confirmatory Data Analysis Script"
 output: html_notebook
 ---
 
