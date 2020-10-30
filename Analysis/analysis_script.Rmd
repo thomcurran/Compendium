@@ -40,7 +40,7 @@ data <-
 describe(data)
 ```
 
-As this is an experimental study, any missing values will be removed listwise from the sample.
+As this is an experimental study, any missing values will be removed listwise from the sample..
 
 ```{r}
 drop_na(data) 
